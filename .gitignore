@@ -1,0 +1,4 @@
+commitlint.config.js
+.DS_Store
+*__pycache__*
+.vscode/
