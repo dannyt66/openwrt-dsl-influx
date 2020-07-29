@@ -33,7 +33,16 @@ for metric in metrics:
         ).split(
             "="
         )
-        metricdict["fields"][splitmetric[0]] = splitmetric[1].replace('"', '')
+        try:
+            metricdict["fields"][splitmetric[0]] = float(
+                splitmetric[1].replace(
+                    '"',
+                    ''
+                )
+            )
+        except:
+            metricdict["fields"][splitmetric[0]] =\
+                splitmetric[1].replace('"', '')
     except:
         pass
 
@@ -43,6 +52,7 @@ client = InfluxDBClient(
     port=8086,
     database='modem'
 )
+
 
 client.write_points([metricdict])
 
